@@ -11,7 +11,10 @@ void extremos(char * texto, int * maior, int * menor, int * qtd_numeros){
         }
     }
     
-    int numeros[*qtd_numeros] = {};
+    int numeros[*qtd_numeros];
+    for(i = 0;i < *qtd_numeros; i++){
+        numeros[i] = 0;
+    }
     
     for(i = 0; texto[i] != '\0'; i++)
     {
