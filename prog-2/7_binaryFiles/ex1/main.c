@@ -1,25 +1,16 @@
 #include <stdio.h>
 
-int createFile(void){
+int inputFile(FILE *f){
 	int qtd;
 	float numbers[] = {8.00,6.00,10.00,9.00,6.00,3.00,8.00,7.00,5.00,9.00};
 	qtd = sizeof(numbers)/sizeof(float);
-	FILE *f = fopen("ex1.dat","wb");
-	if(f == NULL){
-		printf("\nErro"); return 0;
-	}
 	fwrite(numbers, sizeof(float), qtd, f);
-	fclose(f);
 	return 1;
 }
 
-float media(int * qn){
+float media(int * qn, FILE *f){
 	int i, qtdNumbers = 0;
 	float ft, sum = 0;
-	FILE *f = fopen("ex1.dat", "rb");
-	if(f == NULL){
-		printf("\nErro"); return 0;
-	}
 	
 	while(fread(&ft,sizeof(float),1,f) == 1){
 		qtdNumbers++;
@@ -33,18 +24,13 @@ float media(int * qn){
 		fread(&numbers[i],sizeof(float),1,f);
 		sum = sum + numbers[i];
 	}
-	
-	fclose(f);
+
 	return (float)sum/qtdNumbers;
 }
 
-float smallestAverageBigger(int qn, float average){
+float smallestAverageBigger(int qn, float average, FILE *f){
 	int i,j, counter = 0;
 	float numbers[qn], menor;
-	FILE * f = fopen("ex1.dat", "rb");
-	if(f == NULL){
-		printf("\nErro"); return 0;
-	}
 	for(i = 0;i < qn;i++){
 		fread(&numbers[i],sizeof(float),1,f);
 	}
@@ -53,7 +39,7 @@ float smallestAverageBigger(int qn, float average){
 			counter++;
 		}
 	}
-	int biggerorEqual[counter];
+	float biggerorEqual[counter];
 	for(i = 0, j = 0;i < qn; i++){
 		if(numbers[i] >= average){
 			biggerorEqual[j] = numbers[i];
@@ -72,11 +58,20 @@ float smallestAverageBigger(int qn, float average){
 int main(){
 	int qtdNumbers;
 	float average;
-	createFile();
-	average = media(&qtdNumbers);
-	float n = smallestAverageBigger(qtdNumbers, average);
+	FILE *f = fopen("ex1.dat","wb");
+	if(f == NULL){
+		printf("\nErro"); return 0;
+	}
+	inputFile(f);
+	fclose(f);
+
+	f = fopen("ex1.dat", "rb");
+
+	average = media(&qtdNumbers, f);
+	float n = smallestAverageBigger(qtdNumbers, average, f);
 
 	printf("\n%.2f", n);
+	fclose(f);
 
 	return 1;
 }
