@@ -24,7 +24,7 @@ float media(int * qn, FILE *f){
 		fread(&numbers[i],sizeof(float),1,f);
 		sum = sum + numbers[i];
 	}
-
+	rewind(f);
 	return (float)sum/qtdNumbers;
 }
 
@@ -57,7 +57,7 @@ float smallestAverageBigger(int qn, float average, FILE *f){
 }
 int main(){
 	int qtdNumbers;
-	float average;
+	float element,  average;
 	FILE *f = fopen("ex1.dat","wb");
 	if(f == NULL){
 		printf("\nErro"); return 0;
@@ -68,17 +68,10 @@ int main(){
 	f = fopen("ex1.dat", "rb");
 
 	average = media(&qtdNumbers, f);
-	float n = smallestAverageBigger(qtdNumbers, average, f);
+	element = smallestAverageBigger(qtdNumbers, average, f);
 
-	printf("\n%.2f", n);
+	printf("\nMenor elemento maior ou igual à média calculada: %.2f\n", element);
 	fclose(f);
 
 	return 1;
 }
-// criar arquivo com um certo numero de floats
-// calcular a media dos valores
-// escrever o valor do elemento <= a media
-
-/*
-
-*/
