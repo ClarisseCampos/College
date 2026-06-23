@@ -1,13 +1,5 @@
 #include <stdio.h>
 
-int inputFile(FILE *f){
-	int qtd;
-	float numbers[] = {8.00,6.00,10.00,9.00,6.00,3.00,8.00,7.00,5.00,9.00};
-	qtd = sizeof(numbers)/sizeof(float);
-	fwrite(numbers, sizeof(float), qtd, f);
-	return 1;
-}
-
 float media(int * qn, FILE *f){
 	int i, qtdNumbers = 0;
 	float ft, sum = 0;
@@ -58,14 +50,8 @@ float smallestAverageBigger(int qn, float average, FILE *f){
 int main(){
 	int qtdNumbers;
 	float element,  average;
-	FILE *f = fopen("ex1.dat","wb");
-	if(f == NULL){
-		printf("\nErro"); return 0;
-	}
-	inputFile(f);
-	fclose(f);
 
-	f = fopen("ex1.dat", "rb");
+	FILE * f = fopen("ex1.dat", "rb");
 
 	average = media(&qtdNumbers, f);
 	element = smallestAverageBigger(qtdNumbers, average, f);
@@ -73,5 +59,5 @@ int main(){
 	printf("\nMenor elemento maior ou igual à média calculada: %.2f\n", element);
 	fclose(f);
 
-	return 1;
+	return 0;
 }
