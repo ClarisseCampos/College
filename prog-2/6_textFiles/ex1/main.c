@@ -2,8 +2,7 @@
 #define N 3
 typedef struct aluno{
     char nome[60];
-    int n1,n2,n3;
-    /* data */
+    float n1,n2,n3;
 }ALUNO;
 
 void getNames(ALUNO *alunos, FILE * f){
@@ -33,6 +32,7 @@ int main(){
     printf("\nNome: %s", alunos[1].nome);
     printf("\nNome: %s", alunos[2].nome);
     /*---------------------------*/
+
 
     fclose(f);
     return 0;

@@ -14,7 +14,7 @@ float media(int * qn, FILE *f){
 
 	for(i = 0;i < qtdNumbers;i++){
 		fread(&numbers[i],sizeof(float),1,f);
-		sum = sum + numbers[i];
+		sum += numbers[i];
 	}
 	rewind(f);
 	return (float)sum/qtdNumbers;
@@ -49,7 +49,7 @@ float smallestAverageBigger(int qn, float average, FILE *f){
 }
 int main(){
 	int qtdNumbers;
-	float element,  average;
+	float element, average;
 
 	FILE * f = fopen("questao1.bin", "rb");
 
