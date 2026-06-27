@@ -40,7 +40,7 @@ int bubblesort(FILE *f, int * v, int qtd){
 
 int main(){
 	int originalQtd, qtdSemRepeticao;
-	FILE * f = fopen("ex2.dat","rb");
+	FILE * f = fopen("questao2.bin","rb");
 	if(f == NULL){
 		printf("\nErro"); return 0;
 	}

@@ -51,7 +51,7 @@ int main(){
 	int qtdNumbers;
 	float element,  average;
 
-	FILE * f = fopen("ex1.dat", "rb");
+	FILE * f = fopen("questao1.bin", "rb");
 
 	average = media(&qtdNumbers, f);
 	element = smallestAverageBigger(qtdNumbers, average, f);
