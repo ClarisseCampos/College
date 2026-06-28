@@ -1,0 +1,9 @@
+Nr. 	Entregador 	Entregas 	Faturamento 	Distancia (km)
+1		 ana			 60			 2100.50			 410
+2		 mariana			 50			 1800.25			 350
+3		 carlos			 45			 1350.75			 320
+4		 bruno			 30			 900.00			 180
+5		 joao			 25			 625.00			 150
+
+Faturamento total: 6776.50
+Faturamento medio: 1355.30
