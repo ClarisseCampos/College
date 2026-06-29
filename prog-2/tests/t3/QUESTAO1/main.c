@@ -30,10 +30,17 @@ void funcionariosOrdenados(ENTREGADOR *e,int qFuncionarios,FILE *f){
 float average(ENTREGADOR *e,int qFuncionarios, float * ftTotal){
     float sum = 0;
     for(int i = 0;i < qFuncionarios; i++){
-        sum = sum + e[i].faturamento;
+        sum += e[i].faturamento;
     }
     *ftTotal = sum;
     return (float)sum/qFuncionarios;
+}
+
+void preencherRelatorio(ENTREGADOR *e,int qFuncionarios,FILE *f){
+    fputs("Nr. \tEntregador \tEntregas \tFaturamento \tDistancia (km)\n", f);
+    for(int i = 0;i < qFuncionarios;i++){
+        fprintf(f,"%d\t\t %s\t\t\t %d\t\t\t %.2f\t\t\t %d\n",i+1,e[i].nome,e[i].qEntregas,e[i].faturamento,e[i].distancia);
+    }
 }
 int main(){
     int i, qFuncionarios, ch;
@@ -59,20 +66,15 @@ int main(){
     funcionariosOrdenados(e,qFuncionarios,f);
     fclose(f);
     
-
     media = average(e, qFuncionarios, &ftTotal);
 
-    /*-------------------------------*/
     f = fopen("relatorio.txt", "w");
     if(f == NULL){
         printf("\nErro"); return 1;
     }
-    fputs("Nr. \tEntregador \tEntregas \tFaturamento \tDistancia (km)\n", f);
-    for(i = 0;i < qFuncionarios;i++){
-        fprintf(f,"%d\t\t %s\t\t\t %d\t\t\t %.2f\t\t\t %d\n",i+1,e[i].nome,e[i].qEntregas,e[i].faturamento,e[i].distancia);
-    }
+    preencherRelatorio(e,qFuncionarios,f);
+
     fprintf(f,"\nFaturamento total: %.2f\nFaturamento medio: %.2f", ftTotal,media);
     fclose(f);
-
     return 0;
 }
