@@ -26,6 +26,7 @@ int main(){
     printf("\nTamanho: %d\n", size);
     inverterCase(s);
     puts(s);
+    
     free(s);
     
     return 0;
